@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+  <TextView
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      android:layout_marginTop="15dp"
+      android:padding="10dp"
+      android:text="@string/group_list"
+      android:textColor="@android:color/black"
+      android:textSize="20sp"
+      />
+  <androidx.recyclerview.widget.RecyclerView
+      android:id="@+id/dialog_channel_group_RecyclerView"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      />
+
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      >
+
+    <Button
+        android:id="@+id/dialog_channel_group_managerButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/group_manager"
+        />
+
+    <Button
+        android:id="@+id/dialog_channel_group_managerCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:text="@string/cancel"
+        />
+  </LinearLayout>
+
+</LinearLayout>

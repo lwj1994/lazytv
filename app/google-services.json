@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "1019789677604",
+    "firebase_url": "https://lazytv-205ed.firebaseio.com",
+    "project_id": "lazytv-205ed",
+    "storage_bucket": "lazytv-205ed.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019789677604:android:f8ce1ead78551103",
+        "android_client_info": {
+          "package_name": "me.luwenjie.lazytv"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019789677604-4845c9b2u3daeigmiflcn902phek6rlg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "me.luwenjie.lazytv",
+            "certificate_hash": "9beac75012dc99ff655ff36a58e76ff115f499f6"
+          }
+        },
+        {
+          "client_id": "1019789677604-e8d2j93gjteg13np517aujomd2gbeg7g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8h6Ce4n1cB2dEvtj-_7wVdGx2Nbl6avg"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019789677604-e8d2j93gjteg13np517aujomd2gbeg7g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
