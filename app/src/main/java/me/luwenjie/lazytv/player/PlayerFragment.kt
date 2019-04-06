@@ -5,6 +5,7 @@ import android.os.Parcelable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.view.isVisible
 import com.airbnb.mvrx.BaseMvRxFragment
 import com.airbnb.mvrx.MvRx
 import com.airbnb.mvrx.args
@@ -37,7 +38,7 @@ class PlayerFragment : BaseMvRxFragment() {
       setUp(argument.url, false, File(FileUtils.getPath()), "");
       //增加title
       titleTextView.visibility = View.VISIBLE
-      //videoPlayer.setShowPauseCover(false);
+      videoPlayer.isShowPauseCover = false;
       //videoPlayer.setSpeed(2f);
 
       //设置返回键
@@ -46,7 +47,7 @@ class PlayerFragment : BaseMvRxFragment() {
 
       //设置全屏按键功能,这是使用的是选择屏幕，而不是全屏
       fullscreenButton.setOnClickListener { orientationUtils.resolveByClick() }
-
+      fullscreenButton.isVisible = false
       //videoPlayer.setBottomProgressBarDrawable(getResources().getDrawable(R.drawable.video_new_progress));
       //videoPlayer.setDialogVolumeProgressBar(getResources().getDrawable(R.drawable.video_new_volume_progress_bg));
       //videoPlayer.setDialogProgressBar(getResources().getDrawable(R.drawable.video_new_progress));
@@ -61,11 +62,11 @@ class PlayerFragment : BaseMvRxFragment() {
       videoPlayer.backButton.setOnClickListener {
         requireActivity().onBackPressed()
       }
+      videoPlayer.backButton.isVisible = false
 
       videoPlayer.startAfterPrepared()
-
     }
-    }
+  }
 
   override fun invalidate() {
   }

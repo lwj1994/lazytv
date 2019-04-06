@@ -6,7 +6,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-import com.airbnb.epoxy.*
+import com.airbnb.epoxy.EpoxyController
+import com.airbnb.epoxy.EpoxyControllerAdapter
+import com.airbnb.epoxy.EpoxyModel
+import com.airbnb.epoxy.EpoxyRecyclerView
+import com.airbnb.epoxy.EpoxyVisibilityTracker
 import com.airbnb.mvrx.MvRx
 import me.luwenjie.lazytv.R
 
@@ -49,6 +53,7 @@ abstract class BaseListFragment : BaseFragment() {
     initView(view)
     initData(savedInstanceState)
   }
+
   abstract fun initView(view: View)
 
   abstract fun initData(savedInstanceState: Bundle?)
@@ -80,6 +85,7 @@ abstract class BaseListFragment : BaseFragment() {
       Bundle().apply { putParcelable(MvRx.KEY_ARG, arg) }
 
   protected fun showRefreshing(b: Boolean) {
+    if (b == swipeRefreshLayout.isRefreshing) return
     swipeRefreshLayout.post {
       swipeRefreshLayout.isRefreshing = b
     }

@@ -1,4 +1,4 @@
-package me.luwenjie.lazytv.main.channel
+package me.luwenjie.lazytv.main.subscribe
 
 import android.view.View
 import android.widget.TextView
@@ -7,31 +7,32 @@ import com.airbnb.epoxy.EpoxyAttribute.Option.DoNotHash
 import com.airbnb.epoxy.EpoxyModel
 import com.airbnb.epoxy.EpoxyModelClass
 import com.xiachufang.lanfan.common.core.BaseHolder
-import me.luwenjie.lazytv.ChannelModel
+import me.luwenjie.lazytv.GroupModel
 import me.luwenjie.lazytv.R
 import me.luwenjie.lazytv.common.BaseModelWithHolder
 import me.luwenjie.lazytv.common.bindItemView
-import me.luwenjie.lazytv.main.channel.ChannelView.Holder
+import me.luwenjie.lazytv.main.subscribe.SubscribeView.Holder
 
 
 /**
- * @author luwenjie on 2019/3/17 12:35:19
+ * @author luwenjie on 2019/4/6 14:43:03
  */
-@EpoxyModelClass(layout = R.layout.view_channel)
-abstract class ChannelView : BaseModelWithHolder<Holder>() {
+@EpoxyModelClass(layout = R.layout.view_subscribe)
+abstract class SubscribeView : BaseModelWithHolder<Holder>() {
 
   @EpoxyAttribute
-  lateinit var model: ChannelModel
+  lateinit var model: GroupModel
   @EpoxyAttribute(DoNotHash)
-  lateinit var onClickListener: View.OnClickListener
+  lateinit var onClickItem: View.OnClickListener
+
   @EpoxyAttribute(DoNotHash)
-  lateinit var onLongClickListener: View.OnLongClickListener
+  lateinit var onLongClickItem: View.OnLongClickListener
 
   override fun bind(holder: Holder) {
     super.bind(holder)
-    holder.name.text = model.name
-    holder.itemView.setOnClickListener(onClickListener)
-    holder.itemView.setOnLongClickListener(onLongClickListener)
+    holder.textView.text = model.name
+    holder.textView.setOnClickListener(onClickItem)
+    holder.textView.setOnLongClickListener(onLongClickItem)
   }
 
   override fun bind(holder: Holder, previouslyBoundModel: EpoxyModel<*>) {
@@ -40,16 +41,16 @@ abstract class ChannelView : BaseModelWithHolder<Holder>() {
 
   override fun unbind(holder: Holder) {
     super.unbind(holder)
-    holder.itemView.setOnClickListener(null)
-    holder.itemView.setOnLongClickListener(null)
+    holder.textView.setOnClickListener(null)
+    holder.textView.setOnLongClickListener(null)
   }
 
   class Holder : BaseHolder() {
-    val name: TextView by bindItemView(R.id.view_channel_name)
+    val textView by bindItemView<TextView>(R.id.view_subscribe_TextView)
   }
 
   companion object {
-    private const val TAG = "ChannelView"
+    private const val TAG = "SubscribeView"
 
   }
 }

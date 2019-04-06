@@ -14,6 +14,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase
 import androidx.work.WorkerParameters
 import com.google.common.io.ByteStreams
 import com.google.gson.Gson
+import io.reactivex.Maybe
 import io.reactivex.Observable
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.coroutineScope
@@ -62,10 +63,19 @@ interface ChannelDao {
   @Query("SELECT * FROM ChannelGroups ORDER BY oderId")
   fun getGroups(): List<GroupModel>
 
+  @Query("DELETE  FROM Channel WHERE id = :id")
+  fun deleteChannel(id: String)
+
+  @Query("DELETE  FROM Channel WHERE group_id = :id")
+  fun deleteAllChannel(id: String)
+
+  @Query("DELETE  FROM ChannelGroups WHERE id = :id")
+  fun deleteGroup(id: String)
+
   @Query(
-      "SELECT * FROM channel WHERE group_id = :groupId ORDER BY createTime LIMIT :size OFFSET :page * :size")
+      "SELECT * FROM channel WHERE group_id = :groupId ORDER BY createTime DESC LIMIT :size OFFSET :page * :size")
   fun getChannelByGroupId(groupId: String, page: Int,
-      size: Int = 15): Observable<List<ChannelModel>>
+      size: Int = 15): List<ChannelModel>
 
   @Query("SELECT * FROM channel WHERE id = :channelId")
   fun getChannel(channelId: String): ChannelModel?
@@ -81,17 +91,30 @@ interface ChannelDao {
   @Query("SELECT COUNT(*) FROM ChannelGroups")
   fun getGroupCount(): Int
 
+  @Query("SELECT COUNT(*) FROM Channel where group_id = :groupId")
+  fun getGroupChildCounts(groupId: String): Int
+
   @Transaction
   fun insertGroup(model: GroupModel) {
-    insertGroupModel(model)
-    insertChannelModel(model.childChannels)
+    val result1 = insertGroupModel(model)
+    val resultList = insertChannelModel(model.childChannels)
+  }
+
+  @Transaction
+  fun deleteGroupAndChildren(id: String) {
+    deleteAllChannel(id)
+    deleteGroup(id)
   }
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insertGroupModel(model: GroupModel)
+  fun insertGroupModel(model: GroupModel): Long
 
   @Insert(onConflict = OnConflictStrategy.REPLACE)
-  fun insertChannelModel(models: List<ChannelModel>)
+  fun insertChannelModel(models: List<ChannelModel>): List<Long>
+
+
+  @Insert(onConflict = OnConflictStrategy.REPLACE)
+  fun insertChannelModel(model: ChannelModel): Maybe<Long>
 }
 
 
@@ -111,11 +134,11 @@ class SeedDatabaseWorker(
     try {
       applicationContext.assets.open("asia.json").use { inputStream ->
         val str = String(ByteStreams.toByteArray(inputStream))
-        val content = gson.fromJson(str, ChannelContent::class.java)
+        val content = gson.fromJson(str, SubscribeModel::class.java)
         val groupId = UUID.fromString("${content.title}${content.uuid}").toString()
 
         AppDatabase.getInstance(applicationContext).channelDao().insertGroup(
-            GroupModel(groupId, name = content.title, oderId = 0,
+            GroupModel(groupId, name = content.title, oderId = 0, url = "asia.json",
                 childChannels = content.channels.map {
                   ChannelModel(
                       id = UUID.fromString("${it.name}${it.url}").toString(),

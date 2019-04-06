@@ -9,11 +9,10 @@
     >
 
   <TextView
-      android:id="@+id/view_channel_name"
-      android:layout_width="wrap_content"
+      android:id="@+id/view_profile_item_textview"
+      android:layout_width="match_parent"
       android:layout_height="wrap_content"
       android:drawablePadding="50dp"
-      android:drawableStart="@drawable/ic_channel"
       android:gravity="center_vertical"
       android:padding="10dp"
       android:textColor="@color/colorAccent"

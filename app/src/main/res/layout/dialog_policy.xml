@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    >
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:padding="20dp"
+      android:layout_gravity="center"
+      android:gravity="center"
+      android:orientation="vertical"
+      >
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="隐私政策"
+        android:textColor="@color/colorAccent"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:lineSpacingMultiplier="1.3"
+        android:text="本软件不会搜集您的任何信息，无须任何权限，仅有少量广告。\n本软件只提供播放器功能，不提供任何网络资源，请自行寻找资源。由用户自行添加资源引起的版权问题，与本软件无任何关系。"
+        android:textColor="@color/colorAccent"
+        android:textSize="20sp"
+        />
+  </LinearLayout>
+
+</FrameLayout>

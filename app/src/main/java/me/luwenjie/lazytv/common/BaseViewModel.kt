@@ -8,6 +8,7 @@ import androidx.lifecycle.LifecycleRegistry
 import com.airbnb.mvrx.BaseMvRxViewModel
 import com.airbnb.mvrx.BuildConfig
 import com.airbnb.mvrx.MvRxState
+import com.uber.autodispose.android.lifecycle.AndroidLifecycleScopeProvider
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
@@ -24,7 +25,9 @@ abstract class BaseViewModel<S : MvRxState>(initialState: S) : BaseMvRxViewModel
   private val lifecycleRegistry: LifecycleRegistry by lazy(NONE) {
     LifecycleRegistry(this)
   }
-
+  protected val lifeScope by lazy(NONE) {
+    AndroidLifecycleScopeProvider.from(this)
+  }
 
   init {
     lifecycleRegistry.markState(CREATED)

@@ -37,7 +37,7 @@
       android:background="#99000000"
       android:gravity="center_vertical"
       android:orientation="horizontal"
-      android:visibility="invisible"
+      android:visibility="gone"
       >
 
     <TextView
@@ -46,6 +46,7 @@
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
         android:text="00:00"
+        android:visibility="gone"
         android:textColor="#ffffff"
         />
 
@@ -61,6 +62,7 @@
         android:minHeight="4dp"
         android:paddingBottom="8dp"
         android:paddingTop="8dp"
+        android:visibility="gone"
         android:progressDrawable="@drawable/video_seek_progress"
         android:thumb="@drawable/video_seek_thumb"
         />
@@ -71,6 +73,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="16dp"
         android:text="00:00"
+        android:visibility="gone"
         android:textColor="#ffffff"
         />
 
@@ -82,6 +85,7 @@
         android:gravity="center"
         android:minEms="2"
         android:text="标准"
+        android:visibility="gone"
         android:textColor="#ffffff"
         />
 
@@ -91,6 +95,7 @@
         android:layout_height="fill_parent"
         android:paddingRight="16dp"
         android:scaleType="center"
+        android:visibility="gone"
         android:src="@drawable/video_enlarge"
         />
   </LinearLayout>
@@ -125,8 +130,8 @@
 
   <moe.codeest.enviews.ENPlayView
       android:id="@+id/start"
-      android:layout_width="60dp"
-      android:layout_height="60dp"
+      android:layout_width="0dp"
+      android:layout_height="0dp"
       android:layout_centerHorizontal="true"
       android:layout_centerVertical="true"
       android:layout_gravity="center_vertical"
@@ -194,6 +199,7 @@
         android:minEms="5"
         android:paddingLeft="10dp"
         android:text="旋转镜像"
+        android:visibility="gone"
         android:textColor="@android:color/white"
         android:textSize="13sp"
         />
@@ -206,6 +212,7 @@
         android:minEms="5"
         android:paddingLeft="10dp"
         android:text="旋转画面"
+        android:visibility="gone"
         android:textColor="@android:color/white"
         android:textSize="13sp"
         />
@@ -217,6 +224,7 @@
         android:gravity="center"
         android:minEms="5"
         android:paddingLeft="10dp"
+        android:visibility="gone"
         android:text="默认比例"
         android:textColor="@android:color/white"
         android:textSize="13sp"

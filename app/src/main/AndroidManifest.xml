@@ -13,23 +13,26 @@
   <application
       android:name=".App"
       android:allowBackup="true"
-      android:icon="@mipmap/ic_launcher"
+      android:icon="@drawable/ic_strawberry"
       android:label="@string/app_name"
-      android:roundIcon="@mipmap/ic_launcher_round"
+      android:roundIcon="@drawable/ic_strawberry"
       android:supportsRtl="true"
       android:theme="@style/AppTheme"
       tools:ignore="GoogleAppIndexingWarning">
 
     <uses-library
         android:name="org.apache.http.legacy"
-        android:required="false" />
+        android:required="false"/>
 
     <activity
         android:name=".MainActivity"
         android:launchMode="singleTask">
 
     </activity>
-    <activity android:name=".player.PlayerActivity"/>
+    <activity
+        android:name=".player.PlayerActivity"
+        android:launchMode="singleTop"
+        android:screenOrientation="landscape"/>
     <activity
         android:name=".SplashActivity"
         android:launchMode="singleTask">
@@ -73,5 +76,10 @@
         android:configChanges="keyboard|keyboardHidden|orientation|screenSize"
         android:screenOrientation="landscape"/>
     <activity android:name=".main.groupmanger.GroupManagerActivity"/>
+    <activity android:name=".main.subscribe.channel.ChannelActivity"/>
+    <activity
+        android:name=".common.webview.WebActivity"
+        android:launchMode="singleTop"
+        />
   </application>
 </manifest>

@@ -18,17 +18,16 @@
         android:background="@color/colorAccent"
         >
       <ImageView
-          android:id="@+id/collectView"
+          android:id="@+id/backView"
           android:layout_width="50dp"
           android:layout_height="match_parent"
           android:scaleType="center"
-          android:visibility="gone"
           app:layout_constraintTop_toTopOf="parent"
           app:layout_constraintStart_toStartOf="parent"
-          android:src="@drawable/ic_collect_white_24dp"
+          android:src="@drawable/ic_arrow_back_white_24dp"
           />
       <TextView
-          android:id="@+id/groupName"
+          android:id="@+id/title"
           android:layout_width="wrap_content"
           android:layout_height="0dp"
           android:background="?android:attr/selectableItemBackground"
@@ -41,17 +40,7 @@
           app:layout_constraintEnd_toEndOf="parent"
           app:layout_constraintStart_toStartOf="parent"
           app:layout_constraintTop_toTopOf="parent"
-          android:text="我的频道"
-          />
-      <ImageView
-          android:id="@+id/addButton"
-          android:layout_width="50dp"
-          android:layout_height="0dp"
-          android:scaleType="center"
-          android:src="@drawable/ic_add_black_24dp"
-          app:layout_constraintBottom_toBottomOf="parent"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintTop_toTopOf="parent"
+          tools:text="asia"
           />
     </androidx.constraintlayout.widget.ConstraintLayout>
     <include
@@ -62,7 +51,7 @@
         />
 
     <com.google.android.gms.ads.AdView
-        android:id="@+id/adView"
+        android:id="@+id/subscribechanneladView"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:adSize="SMART_BANNER"

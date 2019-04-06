@@ -10,7 +10,12 @@ import me.luwenjie.lazytv.common.BaseState
  */
 data class ChannelState(val request: Async<List<ChannelModel>> = Uninitialized,
     val list: List<ChannelModel> = emptyList(), val page: Int = 0,
-    val groupId: String = "") : BaseState() {
+    val groupId: String = "", val channelSum: Int = 0) : BaseState() {
+
+  val hasNextPage: Boolean
+    get() {
+      return (page + 1) * 15 < channelSum
+    }
 
   constructor(args: ChannelFragmentArgs) : this(groupId = args.groupId)
 

@@ -1,4 +1,4 @@
-package me.luwenjie.lazytv.main
+package me.luwenjie.lazytv.main.subscribe
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,16 +11,14 @@ import com.airbnb.mvrx.existingViewModel
 import me.luwenjie.lazytv.LazytvResult
 import me.luwenjie.lazytv.R
 import me.luwenjie.lazytv.common.BaseSimpleDialog
-import me.luwenjie.lazytv.main.channel.ChannelViewModel
 import me.luwenjie.lazytv.util.ToastUtil
 import org.koin.core.KoinApplication
 
 /**
  * @author luwenjie on 2019/3/20 19:31:09
  */
-class AddChannelDialog : BaseSimpleDialog() {
-  private val viewModel: ChannelViewModel by existingViewModel()
-  private lateinit var nameEditext: EditText
+class AddSubscribeDialog : BaseSimpleDialog() {
+  private val viewModel: SubscribeViewModel by existingViewModel()
   private lateinit var urlEditext: EditText
   private lateinit var confirm: Button
 
@@ -31,35 +29,34 @@ class AddChannelDialog : BaseSimpleDialog() {
 
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?): View? {
-    return inflater.inflate(R.layout.dialog_addchannel, container, false).apply {
-      nameEditext = findViewById(R.id.dialog_addchannel_name)
-      urlEditext = findViewById(R.id.dialog_addchannel_url)
-      confirm = findViewById(R.id.dialog_addchannel_confirm)
+    return inflater.inflate(R.layout.dialog_addsubscribe, container, false).apply {
+      urlEditext = findViewById(R.id.dialog_addsubscribe_url)
+      confirm = findViewById(R.id.dialog_addsubscribe_confirm)
 
       KoinApplication.logger.debug("${viewModel}")
 
       confirm.setOnClickListener {
-        if (nameEditext.text.isEmpty()) {
-          ToastUtil.show("请输入名称")
+        val text = urlEditext.text.toString()
+        if (text.isEmpty()) {
+          ToastUtil.show("请输入url地址")
           return@setOnClickListener
         }
-        if (urlEditext.text.isEmpty()) {
-          ToastUtil.show("请输入url")
-          return@setOnClickListener
-        }
-        viewModel.addChannel(nameEditext.text.toString(), urlEditext.text.toString()){
-          if (it.code == LazytvResult.SUCCESS) {
+        viewModel.parseSubscribeJson(text){
+          urlEditext.post {
+            ToastUtil.show(it.msg)
+            if (it.code == LazytvResult.SUCCESS){
+              viewModel.fetchFeeds()
+              urlEditext.setText("")
+              dismiss()
+            }
           }
-          nameEditext.setText("")
-          urlEditext.setText("")
-          dismiss()
-          ToastUtil.show(it.msg)
+
         }
       }
     }
   }
 
   companion object {
-    private const val TAG = "AddChannelDialog"
+    private const val TAG = "AddSubscribeDialog"
   }
 }

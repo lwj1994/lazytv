@@ -4,13 +4,10 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.lifecycle.Observer
-import com.airbnb.mvrx.existingViewModel
 import kotlinx.android.synthetic.main.dialog_addgroup.confirmButton
 import kotlinx.android.synthetic.main.dialog_addgroup.groupName
 import me.luwenjie.lazytv.R
 import me.luwenjie.lazytv.common.BaseSimpleDialog
-import me.luwenjie.lazytv.main.MainViewModel
 import me.luwenjie.lazytv.util.ToastUtil
 
 /**
@@ -18,7 +15,6 @@ import me.luwenjie.lazytv.util.ToastUtil
  */
 class AddGroupDialog : BaseSimpleDialog() {
 
-  private val viewModel:MainViewModel by existingViewModel()
   override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
       savedInstanceState: Bundle?): View? {
     return inflater.inflate(R.layout.dialog_addgroup, container, false)
@@ -31,15 +27,7 @@ class AddGroupDialog : BaseSimpleDialog() {
         ToastUtil.show("请输入")
         return@setOnClickListener
       }
-      viewModel.createGroupLive.observe(this, Observer {
-        if (it == true){
-          ToastUtil.show("该分组已存在")
-        }else{
-          ToastUtil.show("创建成功")
-          dismiss()
-        }
-      })
-      viewModel.createGroup(groupName.text.toString())
+
     }
   }
 
