@@ -8,11 +8,7 @@ import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import kotlinx.android.synthetic.main.fragment_setting.fragment_setting_appraise
-import kotlinx.android.synthetic.main.fragment_setting.fragment_setting_coffee
-import kotlinx.android.synthetic.main.fragment_setting.fragment_setting_help
-import kotlinx.android.synthetic.main.fragment_setting.fragment_setting_policy
-import kotlinx.android.synthetic.main.fragment_setting.fragment_setting_telegram
+import kotlinx.android.synthetic.main.fragment_setting.*
 import me.luwenjie.lazytv.common.BaseFragment
 import me.luwenjie.lazytv.common.webview.WebActivity
 import me.luwenjie.lazytv.main.CoffeeDialog
@@ -56,11 +52,9 @@ class SettingFragment : BaseFragment() {
       }
 
     }
-    fragment_setting_telegram.setOnClickListener {
-      val html = "<a href='https://t.me/strawberryplayer'>加入 telegram 和我交流</a>"
-      fragment_setting_telegram.text = Html.fromHtml(html)
-      fragment_setting_telegram.movementMethod = LinkMovementMethod.getInstance();
+    val html = "<a href='https://t.me/strawberryplayer'>加入 telegram 和我交流</a>"
+    fragment_setting_telegram.text = Html.fromHtml(html)
+    fragment_setting_telegram.movementMethod = LinkMovementMethod.getInstance()
 
-    }
   }
 }
